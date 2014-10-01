@@ -2,7 +2,7 @@ When faced with the question, 'is this code any good?', even professional progra
 
 There are endless opinions on standards for good code (see [this talk](http://figshare.com/articles/What_Makes_Good_Code_Good_for_Science_/832498) from the Software Sustainability Institute), but they all get at the same three basic concerns:
 
- - **Behaviour - Does it do what it was intended to do?** All code *does* things. Does the new code do what it was supposed to? To answer this, three (maybe four) things must be examined:
+ - **Behavior - Does it do what it was intended to do?** All code *does* things. Does the new code do what it was supposed to? To answer this, three (maybe four) things must be examined:
   - Is it clear what this piece of code was supposed to do?
   - What exactly does this piece of code actually do (in all circumstances)?
   - Are the answers to the above two questions consistent with each other?
