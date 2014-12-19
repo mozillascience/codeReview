@@ -1,0 +1,156 @@
+<!DOCTYPE html><!-- ================================================================
+WELCOME TO THE WEBMAKER TEACHING KIT TEMPLATE!
+Use this template to create your own teaching kit, lesson plan or educational resource.
+Edit the HTML below to add your own content, links and images.
+Code comments like these will help with hints and guides.
+Need help? Start here: http://mzl.la/teachingkit-tips
+================================================================ -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta content="teach-kit" name="webmaker:tags">
+  <link href="https://stuff.webmaker.org/webmaker-kits/v2/css/style.css" media="all" rel="stylesheet" type="text/css">
+<!-- =============================== -->
+<!-- ADD YOUR TITLE HERE -->
+  <title>Reviewing a Contribution</title>
+<!-- =============================== -->
+</head>
+<body>
+  <div id="ribbon">Code Review</div>
+<!-- =============================== -->
+<!-- HEADER IMAGE -->
+<!-- Just paste the URL for your image in the "src" attribute below -->
+  <header style="background-image:url(https://s3-us-west-2.amazonaws.com/webmaker-kits/learning%402x.jpg); margin-bottom: 2em;">
+ <!-- =============================== -->
+    <hgroup>
+<!-- =============================== -->
+<!-- TITLE AND SUMMARY -->
+      <h1>Reviewing a Contribution</h1>
+      <h2>Once a submission has been received, it's time to give it a closer reading. In this lesson, we'll learn about what to look for in a new piece of code, to quickly assess its strengths.</h2>
+<!-- =============================== -->
+<!-- Add your name here -->
+      <h3 id="made-by">Made by the <a href="http://mozillascience.org/">Mozilla Science Lab</a></h3>
+<!-- =============================== -->
+    </hgroup>
+  </header>
+  <div class="wrapper">
+    <div class="row">
+      <main>
+
+        <h1 id='introduction'>Introduction</h1>
+
+        <p>Once a collaborator has contributed a piece of code that passes muster in terms of the submission guidelines from the last lesson, it's time to dig into the code and review it in detail. If the submission guidelines have done their job, the objectives of the code under examination should be clear (by way of the initial discussion and annotations upon submission), and the volume of code to review should be both small (less than 400 lines), and arranged in short, digestible chunks. At this stage, there are a few things to keep in mind to make the process fast and efficient:</p>
+        <div class='well'>
+        <ul>
+          <li><b>Review early & review often.</b> <a href='http://arxiv.org/pdf/1407.5648v2.pdf'>This study</a> of code review in the sciences dramatically demonstrated that code review long after the code is written fails to produce useful results, and rarely yields anything but the most superficial of comments. Good code review requires clear communication and a strong rapport between collaborators; all the techniques discussed here are designed to make that process as efficient and easy as possible. Discuss and review code as it is being developed, and much more substantial results will be achieved.</li>
+          <li><b>Review about 300-500 lines of code per hour.</b> <a href='http://smartbear.com/smartbear/media/pdfs/wp-cc-11-best-practices-of-peer-code-review.pdf'>This study</a> found that reviewing code faster than this resulted in dramatic losses in review effectiveness. This means that the largest submission we were willing to accept (400 lines) should take about one hour to review - and shorter submissions correspondingly less.</li>
+          <li><b>Rely on your test suite.</b> The review stage is one place where having a set of unit tests really pays off. By running the automated tests as the very first step, you immediately and effortlessly confirm that the code is functioning according to expectations. By writing additional simple tests at this stage, not only does the review process become very robust, but you build up a library of checks that can be run in future to immediately ensure new contributions haven't broken old code.</li>
+          <li><b>Have a checklist of things to look for.</b> One pitfall of reviewing any sort of work, is that there's rarely a clear indication of when the task is complete; another is that it's easy to call out problems with what's written, but harder to notice when things are absent. A well tuned checklist helps to circumscribe the review process, and reminds you to look for things both present and missing. As you review more code, you will begin to develop a set of patterns and red flags that appear commonly and indicate potential problems; but to start with, here are a number of generic things to keep an eye out for in any project. They split into two main categories: <em>intrinsic</em> considerations, and <em>extrinsic</em> ones.</li>
+        </ul>
+        </div>
+
+        <h2 id='checklist'>Review Checklists</h2>
+
+        <p><b>Intrinsic Examination</b> looks for elements internal to the new code under review, without worrying too much about its context or the broader project. Some things to look for:</p>
+        <div class='well'>
+        <ul>
+          <li><b>Are functions as simple as possible?</b> We insisted in our submission guidelines that functions be short, but this is really a simple proxy for our true goal: to ensure that functions are modular. A modular function is one that does exactly one thing, and does it well - by insisting on breaking code up into the simplest possible functions, we make them easy to test, easy to understand, and easy to review. Can any of the functions in this new submission be broken up into simpler steps?</li>
+          <li><b>Is the code efficient?</b> If some really slow operation is performed in the code, it should be performed as infrequently as possible. For example, diagonalizing a matrix can be a slow computation. If the new code needs to do a slow operation like this, it should do it once only, and store the result for use, rather than recomputing it every time it needs to use it. Not sure which operations are slow? <em>Assume they all are!</em> Don't repeat any operation unnecessarily - we call this <em>well factored</em> code.</li>
+          <li><b>Is the usage of each function clear?</b> Try and put yourself in the mindset of someone coming to this code for the first time; how would they know how to re-use the existing code? The documentation for each function should have, at a minimum, a short description of the function, and a specification of its inputs and outputs.</li>
+          <li><b>Have edge cases been considered?</b> Users will invariably do all kinds of things with your code that they aren't supposed to. If the user does something unexpected (atypical inputs, clicking on things they're not supposed to...), will this new code break, or will it roll with the punches? For example, if a function takes a numerical input, is there a situation where division by 0 could be triggered?</li>
+        </ul>
+        </div>
+
+        <p><b>Extrinsic Examination</b> considers how this new code is going to fit into the project as a whole. Some things to think about:</p>
+        <div class='well'>
+        <ul>
+          <li><b>Does the new code reinvent any wheels?</b> New code should be just that - new. If it's reproducing functionality you have elsewhere in the code, it shouldn't be repeated here. This is another reason for insisting on splitting functions up into small and reusable pieces; shared functionality can be written, reviewed and debugged just once, rather than over and over again in different contexts.</li>
+        <li><b>Does the new code successfully address the needs of the project?</b> By sketching out that five-minute plan and having had a conversation with your contributors about what their new contribution is trying to address, you created a clear goal for this new work; does this contribution push the project forward by addressing those plans and discussions?</li>
+        <li><b>Does the new code respect the structure of the project?</b> A healthy project is a well organized project with a high degree of standardization. If the rest of the code has established variable naming conventions, file structure, or other patterns, does this new code uphold those patterns?</li>
+        </ul>
+        </div>
+
+        <h2 id='solo'>Flying Solo</h2>
+
+        <p>Like any kind of review, code review is best done by a third party - how then do we take advantage of these techniques when we're working on a project alone, or when we are the sole maintainer of a project? Ideally, try to find a colleague to arrange some quid pro quo - reviewing each other's code, particularly if you are researching similar things, can be both educational and useful for everyone involved - you'll both have better code for having had it reviewed, and you'll both gain some insight into how someone else would solve a problem in your field.</p>
+
+        <p>But, if an arrangement like this simply isn't possible, much can still be done alone. The key practice in each step above, was setting expectations up front. By laying out a rough plan, setting standards for contribution, and making a checklist of things to look for in a new piece of code, you set an a priori standard for your own work before you begin. Doing so gives you a more objective meter stick to assess your own success after the fact; without these standards articulated beforehand, it's much too tempting to assume something is 'good enough' and move on, once it is nominally complete. What's more, when making checklists of standards specifically for yourself, you can keep track of problems you've personally run into in the past, and double check that you aren't heading down that same road again this time around - this is a good habit to get into, regardless of whether you are working alone or with a team.</p>
+
+        <h2 id='team'>Team Code Review</h2>
+
+        <p>If like many scientists you are working in a small research group, consider adding a live code review element to your regular lab meetings. This is an excellent opportunity for everyone in your lab to learn from each other, by seeing how each other solves problems, and by helping everyone compose and refine their checklists of things to look out for when writing and reviewing code. It'll also help keep everyone abreast of the details of each other's work, exposing opportunities to save time and effort by sharing code.</p>
+
+        <p>A few special techniques to facilitate live code reviews (more details at this <a href='http://fperez.org/py4science/code_reviews.html'>excellent blog post</a>):</p>
+
+        <ul>
+          <li><b>Keep is short.</b> While an asynchronous code review can look at up to 400 lines of code, no one wants to sit through that in live discussion. Keep it to 100 lines or less, so that the process doesn't take too much time and focus from the group.</li>
+          <li><b>Keep it polite.</b> It can be an uncomfortable situation to have the details of your work put under a semi-public microscope; whoever is leading the discussion is responsible for making sure feedback is constructive, and the person having their code reviewed feels like the conversation was useful. To achieve this, try framing the discussion around technique; let the author explain the strategy they employed to solve the problem at hand, and then let everyone else explain how they would have solved the problem. This way, the conversation is about sharing ideas, rather than calling people out. Insist that feedback is always specific and actionable, and a lot of bruised feelings can be avoided.</li>
+          <li><b>Make sure the goals are clear.</b> Have whoever is presenting the code point it out a few days beforehand, and ask them to include indications of what the code's purpose is, in the form of a plan or roadmap for their project, a thread on an issue tracker, or just a description to the group well ahead of time. This way, participants have a more sophisticated understanding of what the code is supposed to do, which enables them to give deeper and more substantial feedback - rather than superficial comments about syntax.</li>
+        </ul>
+
+        <h2 id='legacy'>Legacy Code</h2>
+
+        <p>In many cases, a large amount of code may have been written before a code review system has been put into place. Reviewing thousands of lines of pre-existing code is a monumental task - how to go about this without disrupting your schedule?</p>
+
+        <p>Above all, do not attempt to sit down and slog through the entire body of code. As cited above, successful code review depends on building a rapport between contributor and maintainer, where contributors have a clear understanding of the direction of the project, and reviewers have a deep understanding of what contributors are trying to do and how those efforts fit into the whole; all the techniques described above are designed to facilitate building that rapport and understanding quickly and efficiently - without it, communication breaks down, and review loses its efficacy.</p>
+
+        <p>While we can't immediately go back and review a massive amount of code, we can stop the unreviewed codebase from getting any further out of hand. Set up the standards and guidelines discussed above, and begin enforcing them for all new submissions. In addition, require contributors to make small, incremental corrections to the pre-existing code as they use it; every time they use a function from the legacy code, ask them to write some minimal documentation and a test or two for that function. This divides the project of cleaning up old code into many small bites over many contributions, and ameliorates the problem over time without any single massive undertaking from any one individual. What's more, the exercise of slowly re-examining old code a little bit at a time will help everyone involved get a deeper understanding of the code, and gradually expose and eliminate bugs as they appear.</p>
+
+        <h1 id='summary'>Summary</h1>
+
+        <ul>
+          <li>
+            <p>Once a submission is received that meets the minimum standards for the project, use these simple guidelines to expedite & optimize the review process:</p>
+            <div class='well'>
+            <ul>
+              <li>Review code soon after it is written, in manageable chunks.</li>
+              <li>Review code at a rate of 300-500 lines of code per hour.</li>
+              <li>Take heavy advantage of your test suite.</li>
+              <li>Have a checklist of standards & red flags to keep in mind during a close reading of new code; remember to consider both intrinsic and extrinsic aspects of the code.</li>
+            </ul>
+            </div>
+          </li>
+          <li>Setting the standards described above and self-checking for them is a useful exercise, even when working alone.</li>
+          <li>If feasible, try reviewing code live with your lab group; frame the discussion around sharing techniques, and make sure everyone knows what the purpose of the code is well beforehand, to encourage substantial comments.</li>
+          <li>The key to good code review is clear communication and a strong rapport between contributors. Therefore, it's crucial to discuss and review code in small pieces as it is written; do not attempt to review large amounts of code after the fact. When working with large amounts of pre-existing code, re-examine it only a little bit at a time, and employ your contributors to address its problems incrementally.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>In these lessons, we've learned what goes into setting up a successful system of contribution and review for a code project. Mostly, the process consists of defining clear standards and expectations a priori, in a way that minimizes work for the reviewer by enabling contributors to self-check against submission guidelines, and gives the reviewer a short but effective battery of more sophisticated things to check for once code is submitted.</p>
+
+        <p>If you'd like to learn about other topics in computing in the lab, check out the Mozilla Science Lab's <a href='http://mozillascience.org/education/'>Education Page</a> for other lessons, information about our partners in education, and opportunities to teach and get involved. We hope you'll join us!</p>
+
+      </main>
+
+      <aside>
+        <!-- =============================== -->
+        <!-- Contents -->
+        <section class="teach-list">
+          <h2>Chapters</h2>
+          <ol>
+            <li><a href='intro.html'>Introdcution</a></li>
+            <li><a href='design.html'>Designing a Project</a></li>
+            <li><a href='contrib.html'>Defining Good Contributions</a></li>
+            <li><a href='review.html'>Reviewing a Contribution</a></li>
+          </ol>
+        </section>
+
+        <section class="teach-list">
+          <h2>Subsections in this Chapter</h2>
+          <ol>
+            <li><a href='#introduction'>Introdcution</a></li>
+            <li><a href='#checklist'>Review Checklists</a></li>
+            <li><a href='#solo'>Flying Solo</a></li>
+            <li><a href='#team'>Team Code Review</a></li>
+            <li><a href='#legacy'>Legacy Code</a></li>
+            <li><a href='#summary'>Summary</a></li>
+          </ol>
+        </section>
+
+      </aside>
+    </div>
+  </div>
+  <script src="https://stuff.webmaker.org/webmaker-kits/v2/js/main.min.js"></script>
+</body>
+</html>

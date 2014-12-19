@@ -1,0 +1,99 @@
+<!DOCTYPE html><!-- ================================================================
+WELCOME TO THE WEBMAKER TEACHING KIT TEMPLATE!
+Use this template to create your own teaching kit, lesson plan or educational resource.
+Edit the HTML below to add your own content, links and images.
+Code comments like these will help with hints and guides.
+Need help? Start here: http://mzl.la/teachingkit-tips
+================================================================ -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta content="teach-kit" name="webmaker:tags">
+  <link href="https://stuff.webmaker.org/webmaker-kits/v2/css/style.css" media="all" rel="stylesheet" type="text/css">
+<!-- =============================== -->
+<!-- ADD YOUR TITLE HERE -->
+  <title>Code Review in the Lab</title>
+<!-- =============================== -->
+</head>
+<body>
+  <div id="ribbon">Teaching Kit</div>
+<!-- =============================== -->
+<!-- HEADER IMAGE -->
+<!-- Just paste the URL for your image in the "src" attribute below -->
+  <header style="background-image:url(https://s3-us-west-2.amazonaws.com/webmaker-kits/learning%402x.jpg); margin-bottom: 2em;">
+ <!-- =============================== -->
+    <hgroup>
+<!-- =============================== -->
+<!-- TITLE AND SUMMARY -->
+      <h1>Code Review in the Lab</h1>
+      <h2>Code Review is a process of examining code to eliminate bugs and set a standard of quality. In these lessons, you'll learn how to establish a pattern of code review that will make your work more robust, reusable and reproducible, as quickly and easily as possible.</h2>
+<!-- =============================== -->
+<!-- Add your name here -->
+      <h3 id="made-by">Made by the <a href="http://mozillascience.org/">Mozilla Science Lab</a></h3>
+<!-- =============================== -->
+    </hgroup>
+  </header>
+  <div class="wrapper">
+    <div class="row">
+      <main>
+<!-- =============================== -->
+<!-- INTRO -->
+        <h1 id='introduction'>Introduction</h1>
+
+        <p>As we write more code to support scientific research, we'd like to put a system in place that can be shown to reduce the number of bugs in that code, thereby upholding a high standard of quality for the underlying science - and we'd like to do so without an overwhelming investment of time or resources. What's more, we would like to further minimize the amount of time we as scientists spend writing code, by making the sharing, reuse, and collaborative development of scientific code both viable and convenient. How can we design a process that speaks to all these concerns?</p>
+
+        <p>We can start by looking to our traditions surrounding writing manuscripts. The process of manuscript review gives us two major things: a set of customs and expectations for scholarly writing, that participants in a field can at least roughly adhere to even before the review process beings; and a formal and accountable process for reviewing a manuscript once it is written, to push it towards standards of excellence. The process of code review consists of similar parts: first, we must establish a set of basic customs that we believe will predispose our code to quality (the equivalent of good grammar and conventional structure); and second, we must formulate a process for examining code, to see if it not only meets these basic standards, but rises to the more sophisticated standards of quality we seek, the details of which we are free to define, but must define clearly.</p>
+
+        <p>Which all begs the question: what customs and standards should we define for our code? What makes code <em>good</em>? If our goal is to catch & eliminate bugs during development, we must be able to clearly define what we intend a piece of code to do, and present it in a way that is legible enough for a reader to assess whether it (likely) lives up to the task at hand. And if our goal is to enable collaboration on and reuse of code, we must find a way to build rapport with our collaborators, help them understand the goals of our code, and give them a simple but precise way of communicating back to us what contributions they would like to make to support those goals.</p>
+
+        <p>In other words, we need a procedure for clearly communicating about code, in order to help make errors more obvious, and smooth the process of working together - and this is exactly what a pattern of code review sets out to do. In what follows, we'll examine the three major steps in this pattern:</p>
+
+        <ol class="agenda">
+          <li><a href="design.html">Desiging a Project</a></li>
+          <li><a href="contrib.html">Defining Good Contributions</a></li>
+          <li><a href="review.html">Reviewing a Contribution</a></li>
+        </ol>
+
+        <h2 id='reading'>Further Reading & References</h2>
+        <p>Many of the ideas and techniques described here were proposed in the following research:</p>
+        <ul>
+          <li><a href='http://arxiv.org/pdf/1407.5648v2.pdf'>Code Review For & By Scientists</a>, M. Petre, G. Wilson</li>
+          <li><a href='http://smartbear.com/smartbear/media/pdfs/wp-cc-11-best-practices-of-peer-code-review.pdf'>11 Best Practices for Peer Code Review</a>, SmartBear</li>
+          <li><a href='http://fperez.org/py4science/code_reviews.html'>Code Reviews: the Lab Meeting for Code</a>, F. Perez</li>
+
+        </ul>
+
+        <h2>Next Lesson</h2>
+        <p>In <a href="design.html">Desiging a Project</a>, we'll learn how to set up and communicate a high level plan for our project, in order to set the stage for the contribution & review process.</p>
+
+      </main>
+
+      <aside>
+        <!-- =============================== -->
+        <!-- Contents -->
+        <section class="teach-list">
+          <h2>Chapters</h2>
+          <ol>
+            <li><a href='intro.html'>Introdcution</a></li>
+            <li><a href='design.html'>Designing a Project</a></li>
+            <li><a href='contrib.html'>Defining Good Contributions</a></li>
+            <li><a href='review.html'>Reviewing a Contribution</a></li>
+          </ol>
+        </section>
+
+        <section class="teach-list">
+          <h2>Subsections in this Chapter</h2>
+          <ol>
+            <li><a href='#introduction'>Introdcution</a></li>
+            <li><a href='#reading'>Further Reading</a></li>
+
+          </ol>
+        </section>
+
+      </aside>
+    </div>
+  </div>
+  <script src="https://stuff.webmaker.org/webmaker-kits/v2/js/main.min.js"></script>
+</body>
+</html>

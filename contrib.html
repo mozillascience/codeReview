@@ -1,0 +1,121 @@
+<!DOCTYPE html><!-- ================================================================
+WELCOME TO THE WEBMAKER TEACHING KIT TEMPLATE!
+Use this template to create your own teaching kit, lesson plan or educational resource.
+Edit the HTML below to add your own content, links and images.
+Code comments like these will help with hints and guides.
+Need help? Start here: http://mzl.la/teachingkit-tips
+================================================================ -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta content="teach-kit" name="webmaker:tags">
+  <link href="https://stuff.webmaker.org/webmaker-kits/v2/css/style.css" media="all" rel="stylesheet" type="text/css">
+<!-- =============================== -->
+<!-- ADD YOUR TITLE HERE -->
+  <title>Defining Good Contributions</title>
+<!-- =============================== -->
+</head>
+<body>
+  <div id="ribbon">Code Review</div>
+<!-- =============================== -->
+<!-- HEADER IMAGE -->
+<!-- Just paste the URL for your image in the "src" attribute below -->
+  <header style="background-image:url(https://s3-us-west-2.amazonaws.com/webmaker-kits/learning%402x.jpg); margin-bottom: 2em;">
+ <!-- =============================== -->
+    <hgroup>
+<!-- =============================== -->
+<!-- TITLE AND SUMMARY -->
+      <h1>Defining Good Contributions</h1>
+      <h2>By laying down some standards and guidelines, we can raise the level of code quality submitted to a project without any further work on our part. In this lesson, we'll discuss how to establish useful ground rules for code contributions to your project.</h2>
+<!-- =============================== -->
+<!-- Add your name here -->
+      <h3 id="made-by">Made by the <a href="http://mozillascience.org/">Mozilla Science Lab</a></h3>
+<!-- =============================== -->
+    </hgroup>
+  </header>
+  <div class="wrapper">
+    <div class="row">
+      <main>
+
+        <h1 id='introduction'>Introduction</h1>
+
+        <p>Now that we have a road map for our project, we're almost ready to start coding. But first, it will save us a lot of time and effort later if we set up some ground rules for what a good contribution to our project looks like. These ground rules should be designed to make contributions as easy as possible for a reviewer to understand and assess, and to eliminate simpler mistakes before the contribution is proposed in the first place; these guidelines ideally enforce a minimum standard of quality, while simultaneously minimizing the amount of time the reviewer (probably yourself) needs to spend combing through code. Think of them as the grammar of a contribution, and the set of basic customs that make something familiar and easily digestable; they are the minimum standards that people should self-check for before a contribution is made.</p>
+
+        <p>In what follows, we'll lay out and explain some common standards. The details may need to change to suit your project, but the overall structure typically remains the same.</p>
+
+        <h1 id='communication'>Communication</h1>
+
+        <p>There is no substitute for a good conversation. Before they begin on a contribution, encourage collaborators to have a discussion with you (or whoever is maintaining the code) about what exactly it is that they'd like to do. Will the proposed new code contribute to the existing plan for the project, fix an existing problem, or change the course or nature of the project in some way? Will it fit with the existing work well? An up-front discussion about intentions helps to avoid misunderstandings and wasted effort down the line, and lets this whole process start from a place of clear communication and understanding.</p>
+
+        <p>This is where that five-minute plan you sketched out when you were preparing your project will come in handy. If this is a proposal for new code, ask the contributor exactly which step of the plan they plan on contributing to, and how they intend on achieving that; or, if their proposal seems out of scope, point to that road map as an explanation of why the proposal isn't the right fit. The simple act of getting people to articulate how their plans fit with yours will often bring to light problems and challenges before they turn into code contributions that aren't quite right.</p>
+
+        <p>Software collaboration platforms like GitHub provide facilities for these conversations in the form of an 'issue tracker' - <a href='https://guides.github.com/features/issues/'>use them</a>. By asking a collaborator to open an issue (which works essentially like a forum or message board) to describe and discuss their intentions before they get started, not only can we start from a place of mutual understanding and avoid wasted effort on all sides, but a trail of documentation then exists; when the code contribution finally comes in, you'll have a clear record of the conversation around it that will help you decide if the new code indeed addresses the issue at hand.</p>
+
+        <p>That being said - a quick water cooler chat is far better than nothing. Tools aside, what really matters is establishing a clear mutual understanding of what a new piece of code is supposed to do.</p>
+
+        <h1 id='submission'>Submission Guidelines</h1>
+
+        <p>The code review process is greatly expedited by standardization. By setting up some basic guidelines for submissions, we can enable contributors to self-check for basic requirements, and ensure that the code we have to review comes in an easily digestible format. Each project may need slightly different submission guidelines to suit its needs, but here are a set of common ones to start from; whatever list you come up with, put it in a very obvious and prominent place in your repository - probably in the README file at the top level of the project, under a clear heading of 'Submission Guidelines', or even in its own CONTRIBUTING file.</p>
+        <div class='well'>
+        <ul>
+          <li><b>Maximum submission length of 400 lines.</b> It's impossible to review thousands of lines of code in a sitting; <a href='http://smartbear.com/smartbear/media/pdfs/wp-cc-11-best-practices-of-peer-code-review.pdf'>this study</a> recommends no more than 400 lines at once. Going beyond this reduces the amount of bugs we can successfully detect, while making the amount of time needed for code review blow up. If more changes than this are required, they should almost certainly be in separate contributions.</li>
+          <li><b>Maximum function length of 50 lines.</b> The shorter and simpler a function is, the easier it is for the reviewer to confirm that it in fact does what it's supposed to; long, complicated functions are difficult to assess, and rarely lend themselves to reuse down the line.</li>
+          <li><b>Code must be automatically merged.</b> Version control systems will report if a new contribution can be automatically merged into the existing code, or if a conflict exists. Make it squarely the responsibility of the contributor to resolve all conflicts before submission, so you aren't overwhelmed with fitting things together yourself.</li>
+          <li><b>All tests must pass.</b> One of the other benefits of insisting on small, modular functions, is that they lend themselves better to writing automated <a href='http://en.wikipedia.org/wiki/Unit_testing'>unit tests</a> to ensure their healthy functioning. If your project contains a test suite, insist that all tests must still pass after the inclusion of a new piece of code, as an automatic cross-check to ensure nothing has been broken by the changes.</li>
+          <li><b>All functions must be tested.</b> Similar to the above, if a contribution creates a new function, insist that it have at least one or two tests in the test suite that check that it is doing what it's supposed to. By requiring contributors to write tests as they go along, the effort of building up a test suite remains manageable and distributed.</li>
+          <li><b>All functions must be documented.</b> Every function should be accompanied by a comment indicating, at a minimum, what the function is supposed to do, what its inputs are, and what it will return. Again - insisting contributors write these as they go along prevents the task of generating documentation from becoming overwhelmingly time consuming.</li>
+          <li><b>Respect the style guide.</b> Most programming languages have an agreed upon guide for programming style, designed to make code as readable and standardized as possible. What's more, free utilities exist that will automatically check for compliance with these rules (see <a href='https://pypi.python.org/pypi/pep8'>pep8</a> for Python or <a href='https://www.npmjs.com/package/jslint'>jslint</a> for JavaScript, for example). Indicate to your contributors what style guide and checking tool you are using, and demand they submit code that is strictly compliant to these standards.</li>
+          <li><b>Indicate what issue this contribution addresses.</b> As discussed above, much sadness is avoided by talking about plans for code contribution beforehand. Ask your contributors to include a link to the thread in the issue tracker that led to this contribution, so that you can quickly see what this contribution is trying to address.</li>
+          <li><b>Summarize and annotate changes.</b> Ask your contributors to write up a very brief, point form description of how their contribution goes about achieving its intended task. By asking your contributors to articulate the strategy behind their work, not only do you get an easily-understood description of the contribution, but there will be less bugs on average! By thinking about what they've done enough to describe it, contributors will often catch their own mistakes before submitting them.</li>
+          <li><b>Cut and paste this checklist into the submission description, and indicate compliance with each point.</b> By asking your contributors to copy your submission guidelines into the discussion of their submission, you get an immediate indication of whether they read the instructions; furthermore, asking people to indicate compliance with each point discourages contributors from ignoring any of the guidelines you've laid out.</li>
+        </ul>
+        </div>
+
+        <p>If a contribution fails to respect any of the submission guidelines you lay out, look no further - you are well within your rights to politely but summarily insist these basic requirements are met before the contribution will be considered further.</p>
+
+        <h1 id='summary'>Summary</h1>
+
+        <p>Before coding even begins, laying down some ground rules will improve the quality of code, and make your job as reviewer fast and easy:</p>
+        <div class='well'>
+          <ul>
+            <li>Have a conversation with contributors beforehand, to ensure their plans make sense for the project.</li>
+            <li>Provide contributors with a checklist of submission guidelines that they should conform to before making a submission.</li>
+            <li>Demand strict adherence to the submission guidelines.</li>
+          </ul>
+        </div>
+
+        <h2>Next Lesson</h2>
+        <p>In <a href="review.html">Reviewing a Contribution</a>, we'll discuss what to look for in a new piece of code, as well as examine some novel situations like working alone, live code review with your lab group, and reviewing large, pre-existing codebases.</p>
+
+      </main>
+
+      <aside>
+        <!-- =============================== -->
+        <!-- Contents -->
+        <section class="teach-list">
+          <h2>Chapters</h2>
+          <ol>
+            <li><a href='intro.html'>Introdcution</a></li>
+            <li><a href='design.html'>Designing a Project</a></li>
+            <li><a href='contrib.html'>Defining Good Contributions</a></li>
+            <li><a href='review.html'>Reviewing a Contribution</a></li>
+          </ol>
+        </section>
+
+        <section class="teach-list">
+          <h2>Subsections in this Chapter</h2>
+          <ol>
+            <li><a href='#introduction'>Introdcution</a></li>
+            <li><a href='#communication'>Communication</a></li>
+            <li><a href='#submission'>Submission Guidelines</a></li>
+            <li><a href='#summary'>Summary</a></li>
+          </ol>
+        </section>
+
+      </aside>
+    </div>
+  </div>
+  <script src="https://stuff.webmaker.org/webmaker-kits/v2/js/main.min.js"></script>
+</body>
+</html>

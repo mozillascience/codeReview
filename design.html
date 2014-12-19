@@ -1,0 +1,151 @@
+<!DOCTYPE html><!-- ================================================================
+WELCOME TO THE WEBMAKER TEACHING KIT TEMPLATE!
+Use this template to create your own teaching kit, lesson plan or educational resource.
+Edit the HTML below to add your own content, links and images.
+Code comments like these will help with hints and guides.
+Need help? Start here: http://mzl.la/teachingkit-tips
+================================================================ -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta content="teach-kit" name="webmaker:tags">
+  <link href="https://stuff.webmaker.org/webmaker-kits/v2/css/style.css" media="all" rel="stylesheet" type="text/css">
+<!-- =============================== -->
+<!-- ADD YOUR TITLE HERE -->
+  <title>Designing a Project</title>
+<!-- =============================== -->
+</head>
+<body>
+  <div id="ribbon">Code Review</div>
+<!-- =============================== -->
+<!-- HEADER IMAGE -->
+<!-- Just paste the URL for your image in the "src" attribute below -->
+  <header style="background-image:url(https://s3-us-west-2.amazonaws.com/webmaker-kits/learning%402x.jpg); margin-bottom: 2em;">
+ <!-- =============================== -->
+    <hgroup>
+<!-- =============================== -->
+<!-- TITLE AND SUMMARY -->
+      <h1>Designing a Project</h1>
+      <h2>Any review process relies on having established goals and standards to assess against. In our first lesson, we'll learn how to lay out an overarching plan for a project, that will set us up to easily judge the relevance & success of a piece of code.</h2>
+<!-- =============================== -->
+<!-- Add your name here -->
+      <h3 id="made-by">Made by the <a href="http://mozillascience.org/">Mozilla Science Lab</a></h3>
+<!-- =============================== -->
+    </hgroup>
+  </header>
+  <div class="wrapper">
+    <div class="row">
+      <main>
+
+        <h1 id='introduction'>Introduction</h1>
+
+        <p>All review processes require a standard to review against; and if our primary goal is to catch bugs and ensure our code is doing the tasks intended, we need to lay out just what those tasks are. By answering the question <em>'what are we trying to achieve?'</em>, we set a finite limit on what should and should not be included in our project; this is called defining a <em>scope</em>, and it gives us a critical frame of reference for judging new contributions. Many a coding project has failed due to 'feature creep' - the phenomenon of endlessly adding just one more interesting idea to the code, regardless of original intentions. Make no mistake: there is an infinite number of interesting ideas in the world. Trying to roll them all up into one project results in a monstrously huge codebase that is impossible to understand, maintain or use.</p>
+
+        <p>Once we have that high-level statement of what we're trying to achieve, we can begin to sketch out a rough plan for our code - where do we want to start from, and what are the steps we expect to have to go through to get to our goal? At this stage, we aren't trying to lay out every single implementation detail; rather, we want a roadmap that lets us do two things:</p>
+
+        <ul>
+          <li><b>Separate and simplify the steps to achieving our goals.</b> After sketching a first draft of a plan, points at which to divide a problem up often become obvious: these are extremely valuable opportunities! By taking advantage of opportunities to split a problem up, we turn a complicated analysis into a series of simpler tasks - and the smaller and simpler each of these tasks are, the more likely you'll be able to catch bugs in them as you examine and use the code. Furthermore, as tasks are split up, they tend to become more generic, and a piece of code that accomplishes a more generic goal is more likely to be able to be reused in the future. This is the practice of writing modular code: code that is built out of many small, simple pieces, that are easy to debug and easy to use.</li>
+          <li><b>Communicate our goals to our collaborators.</b> A relatively simple, high-level roadmap is a valuable tool for helping our colleagues understand how to use and contribute to our software. Consider the following problem: a newcomer wants to participate in your project. What's the best possible understanding of the project we can give her within five minutes of her arrival? This is a 'five minute plan' - a clear, high-level roadmap that can orient a collaborator quickly, so they can begin to make useful contributions as soon as possible.</li>
+        </ul>
+
+        <p>So, our two goals at this stage are:</p>
+        <div class='well'>
+          <ul>
+            <li><b>Define the scope of our project</b>, so we can make judgements on what should and shouldn't be included; answer the question, 'what are we trying to achieve?'</li>
+            <li><b>Sketch a high-level plan of our project</b>, so we can split it up into simple tasks and communicate the lay of the land to collaborators quickly and easily; this 'five minute plan' should be digestible by a newcomer inside of five minutes.</li>
+          </ul>
+        </div>
+
+
+        <h1 id='example'>Example</h1>
+
+        <p>A bacteriophage ('phage' for short) is a virus that infects bacteria. In order to stave off these infections, bacteria keep chunks of phage genome in their own DNA, to serve as templates to help them recognize phages when they attack. An interesting study in immunology, then, would be to examine and compare repositories of phage and bacteria DNA to see where exactly these chunks of phage genome appear in bacterial DNA, so we can understand better this genetic archival process (just such a project can be found <a href='https://github.com/goyalsid/phageParser'>here</a>).</p>
+
+        <p>Sounds like a job for some code! We can immediately write down a simple goal for this project:</p>
+
+        <em>"Download phage and bacteria genomes from open databases, and identify the nature and position of matches to phage DNA within bacteria DNA."</em>
+
+        <p>By writing down a simple statement that circumscribes the scope of our project, we have done ourselves a great service: now, when an eager colleague comes along who is interested in something similar but not quite the same, and suggests we add functionality to look for instances of horizontal gene transfer between bacteria, we can easily judge that this would be out of scope, point to our goals, and say politely but resolutely, 'no'. Would code to identify horizontal gene transfer be interesting and useful? Absolutely! But the mistake we are trying to avoid is rolling up too much complication into one project. By keeping things focused and simple, maintaining and using our code remains fast and easy, and bugs remain easier to catch. That horizontal gene transfer idea is an excellent project in its own right - it deserves to stand on its own, in its own easily maintained project. To help everyone understand the scope of your project, include this statement in the documentation - somewhere prominent, like the top of the README file.</p>
+
+        <p>Now that we know what we're trying to accomplish, we can start to imagine some simple steps to get there. An enormously useful tool in this process is a simple flow chart. We can turn our original statement into a simple flow chart as follows:</p>
+
+        <figure>
+          <img src='img/plan0.jpg'></img>
+          <figcaption><em>A sketch of the original plan, simple enough to fit on a napkin.</em></figcaption>
+        </figure>
+
+        <p>Once we've drawn even this simple diagram, we can start to think more clearly about our project. Consider, for example, the 'compare and report' step - what does this mean? What will be involved in achieving this? Perhaps the place we're getting our data from reports it in some messy or awkward manner; we'll have to tidy it up into a form more useful for our purposes. Then, we want to search for matches between phage and bacteria DNA, and report those matches; the 'compare and report bubble' breaks down into something of the form:</p>
+
+        <figure>
+          <img src='img/plan1.jpg'></img>
+          <figcaption><em>Try breaking down some of the more vague bubbles in the original diagram - what's involved in achieving each step?</em></figcaption>
+        </figure>
+
+        <p>Now, some more questions arise: will the cleaning process be the same for the phage and bacteria raw data? Probably we should consider splitting these up into separate cleaning processes for each type. And how exactly do we intend to do that 'search for matches' step - searching through data can be complicated, but we can simplify the process by using a database with built-in search functionality. Our flow chart becomes something like:</p>
+
+        <figure>
+          <img src='img/plan2.jpg'></img>
+          <figcaption><em>Envisioning how to simplify the steps in a project leads to a clearer back-of-the-envelope plan.</em></figcaption>
+        </figure>
+
+        <p>At this point, something very powerful has occurred; we've split the process up enough, that a major logical division has emerged:</p>
+
+        <figure>
+          <img src='img/plan3.jpg'></img>
+          <figcaption><em>High-level plans help identify the major stages of a project, like before and after populating a database; these are convenient places to divide labor and identify independent and reusable parts.</em></figcaption>
+        </figure>
+
+        <p>Once that database is populated, we can carry on with our phage / bacteria DNA matching search. But we've also created a useful artifact (the database) that can be reused for other tasks in the future - for example, we can tell that keen colleague that while we aren't going to write horizontal gene transfer detection algorithms into our project, she's welcome to use our database as a starting point to do it herself. What's more, we've created a logical division of labor in our own project; one grad student can work on getting the data downloaded, cleaned up and populated in the database, while another completely independently figures out how to search for matches and report the results. By splitting tasks up, we've made them simpler, easier to reuse, and easier to implement. And when we get down to the business of reviewing code, we've set ourselves up to answer much simpler questions; deciding if a piece of code is doing one simple bubble in our flow chart is much easier than deciding if it's contributing to the whole project in some poorly defined sense. Finally, this flow chart is a great example of a 'five minute plan' - a new collaborator can look at it, and quickly grasp the basic idea of what's going on.</p>
+
+        <h2 id='overdo'>Don't Overdo It (The Plan Will Change)</h2>
+
+        <p>Having a clear plan is hugely helpful in communicating with collaborators, keeping projects well-managed, and setting the task of code review up to be fast and easy. But don't overdo it. The reality of most software projects is that needs and goals are emergent - they become clearer as the project progresses, and this is especially true when you throw scientific discovery into the mix. Planning every last detail of a project up front is called <em>waterfall design</em>, and while it seems like it would be a logical extension of planning to make sure that plan is as detailed and complete as possible, it usually backfires. An exquisitely detailed plan written up-front almost never predicts all the problems and discoveries that emerge during the development process; and then to change such a detailed document to reflect these emergent details is a huge amount of work, which people rarely make time for in practice. The result is a project plan that is out of sync with the realities of the project, that ends up misleading and confusing newcomers, and misrepresenting the project as a whole.</p>
+
+        <p>Therefore, keep this plan simple and high-level, so that it can be changed easily (do not, however, let people bully you into changing the plan without due cause - remember, part of the point of this step is to help you judge what does and does not belong in this project; but that filter should be your deciding authority, justified and communicated by the plan, not the cumbersome nature of an overly-detailed strategy document). A good guiding principle is to answer the question: 'what is the best introduction to this project I can give a newcomer in five minutes?'</p>
+
+        <h1 id='summary'>Summary</h1>
+
+        <p>In order to set up the process of code review and enable effective collaboration, start by writing down answers to two questions:</p>
+
+        <div class='well'>
+          <ul>
+            <li>What is the overall goal of this project? This gives you a mission statement that helps control the scope of the project, and make judgements on what to include.</li>
+            <li>What is the 'five-minute plan' for this project? Sketch out a plan for how this project is going to achieve its goals, possibly as a flow chart, that can be communicated to a new collaborator in under five minutes; look for opportunities to split tasks up into simple, independent chunks.</li>
+          </ul>
+        </div>
+
+        <h2>Next Lesson</h2>
+        <p>In <a href="contrib.html">Defining Good Contributions</a>, we'll learn how to create a set of ground rules for contributions, that will raise the quality of code submitted and make the review process faster and simpler.</p>
+
+      </main>
+
+      <aside>
+        <!-- =============================== -->
+        <!-- Contents -->
+        <section class="teach-list">
+          <h2>Chapters</h2>
+          <ol>
+            <li><a href='intro.html'>Introdcution</a></li>
+            <li><a href='design.html'>Designing a Project</a></li>
+            <li><a href='contrib.html'>Defining Good Contributions</a></li>
+            <li><a href='review.html'>Reviewing a Contribution</a></li>
+          </ol>
+        </section>
+
+        <section class="teach-list">
+          <h2>Subsections in this Chapter</h2>
+          <ol>
+            <li><a href='#introduction'>Introdcution</a></li>
+            <li><a href='#example'>Example</a></li>
+            <li><a href='#overdo'>Don't Overdo It</a></li>
+            <li><a href='#summary'>Summary</a></li>
+          </ol>
+        </section>
+
+      </aside>
+    </div>
+  </div>
+  <script src="https://stuff.webmaker.org/webmaker-kits/v2/js/main.min.js"></script>
+</body>
+</html>
